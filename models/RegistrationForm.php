@@ -13,6 +13,9 @@ class RegistrationForm extends Model
     public $password;
     public $password_repeat;
 
+    /**
+     * set form rules
+     */
     public function rules() {
         return [
             [['nick', 'email', 'password', 'password_repeat'], 'required'],
@@ -20,6 +23,10 @@ class RegistrationForm extends Model
         ];
     }
 
+    /**
+     * registration user in database
+     * @return [bool] [if user data add in database return true]
+     */
     public function signup() {
         $users = new Users();
         $users->nick = User::$nick;
@@ -28,7 +35,11 @@ class RegistrationForm extends Model
 
         return $users->save();
     }
-
+    /**
+     * checks whether the nickname is not available in the database
+     * @return [bool] [return true if nick is empty
+     *                 return false if nick available]
+     */
     public function checkUserNickInDB()
     {
         $users = new Users();
@@ -42,7 +53,13 @@ class RegistrationForm extends Model
             return false;
         }
     }
-
+    /**
+     * 
+     *check whether the password entered by the user match
+     * @param  [string] $password        [user password]
+     * @param  [string] $repeat_password [repeat user password]
+     * @return [bool]   [return true if password is rquil, else return false]
+     */
     public function checkEquilPasswod($password, $repeat_password)
     {
         if($password === $repeat_password) {

@@ -14,6 +14,9 @@ class UserInfoForm extends Model
     public $firstname;
     public $lastname;
 
+    /**
+     * set form rules
+     */
     public function rules() {
         return [
             [['nick', 'email', 'password', 'firstname', 'lastname'], 'string'],
@@ -21,6 +24,10 @@ class UserInfoForm extends Model
         ];
     }
 
+    /**
+     * update information about user in database
+     * @param  [string] $nick [nick loged user]
+     */
     public function update($nick) {
     	$users = new Users();
 

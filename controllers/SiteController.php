@@ -15,12 +15,17 @@ use yii\base\Model;
 class SiteController extends Controller
 {
 
-
+    /**
+     * render index page
+     */
     public function actionIndex()
     {
         return $this->render('index');
     }
 
+    /**
+     * render registration page
+     */
     public function actionRegistration()
     {
         $session = Yii::$app->session;
@@ -49,6 +54,9 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * render login page
+     */
     public function actionLogin()
     {
         $session = Yii::$app->session;
@@ -80,18 +88,17 @@ class SiteController extends Controller
         }
     }
 
-
+    /**
+     * render user ifo page
+     */
     public function actionUserinfo()
     {
 
-
         $model = new UserInfoForm();
 
-       
         if ($model->load(Yii::$app->request->post())) {
             User::setUserData($model->nick, $model->email, $model->password, $model->firstname, $model->lastname);
             $model->update();
-
         }
 
         $session = Yii::$app->session;
@@ -111,6 +118,9 @@ class SiteController extends Controller
 
     }
 
+    /**
+     * logout loged user
+     */
     public function actionLogout()
     {
         $session = Yii::$app->session;
@@ -120,6 +130,9 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    /**
+     * update user data in database. This fubction used in ajax request.
+     */
     public function actionUpdate()
     {
         $session = Yii::$app->session;
@@ -138,17 +151,6 @@ class SiteController extends Controller
         return $this->render('form/userinfo', [
             'model' => $model
         ]);
-
-
     }
 
-    public function actionSubmission()
-    {
-
-        $string = Yii::$app->request->post('string');
-
-        return $this->render('form/userinfo', [
-            'stringHash' => $string,
-        ]);
-    }
 }

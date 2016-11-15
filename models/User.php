@@ -13,7 +13,14 @@ class User
     public static $lastname;
 
     public static $guest = true;
-
+    /**
+     * ustanavlivet information about the currently logged on user
+     * @param [string] $nick      [user nick]
+     * @param [string] $email     [user email]
+     * @param [string] $password  [user password]
+     * @param [string] $firstname [user firstname]
+     * @param [string] $lastname  [user lastname]
+     */
     public static function setUserData($nick, $email, $password, $firstname, $lastname)
     {
 
@@ -25,6 +32,10 @@ class User
 
     }
 
+    /**
+     * returns information about the currently logged on user
+     * @return [string] [all data about logged user]
+     */
     public static function getUserData()
     {
         $data = "email : ".self::$email."<br>"
@@ -36,6 +47,9 @@ class User
         return $data;
     }
 
+    /**
+     * clear information about the currently logged on user
+     */
     public static function clearUserData()
     {
         self::$email = '';
@@ -45,7 +59,10 @@ class User
         self::$password = '';
         self::$guest = true;
     }
-
+    /**
+     * [load information about the currently logged on user database]
+     * @param  [string] $nick [nick logged user]
+     */
     public static function updateUserData($nick)
     {
         $users = new Users();

@@ -10,7 +10,10 @@ class LoginForm extends Model
     public $nick;
     public $password;
 
-
+    /**
+     * set form rules
+     * @return [type] [description]
+     */
     public function rules()
     {
         return [
